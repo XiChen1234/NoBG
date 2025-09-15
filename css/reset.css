@@ -5,12 +5,6 @@
     box-sizing: border-box;
 }
 
-button {
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-}
-
 body,
 html {
     width: 100%;
@@ -25,4 +19,18 @@ ul,
 menu,
 dir {
     list-style: none;
+}
+
+/* common css */
+.button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: transparent;
+    transition: transform 0.3s;
+}
+
+.button:hover {
+    transform: translateY(5px);
 }

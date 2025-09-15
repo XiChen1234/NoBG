@@ -11,6 +11,9 @@
     --bg-focus-dark: #333333;
 
     --bg-card: #888;
+    --bg-button: orange;
+    --bg-button-focus: #e65100;
+    --bg-button-disabled: #aaa;
 
     /* text */
     --text-main-light: #000;
@@ -18,9 +21,10 @@
     --text-secondary-light: #666666;
     --text-secondary-dark: #999999;
     --text-main-focus: orange;
-    --text-secondary-focus: #ffaf1a;
+    --text-secondary-focus: #ffc04a;    
 
     --text-card: #fff;
+    --text-button: #fff;
 
     /* border */
     --border-color-light: #333;

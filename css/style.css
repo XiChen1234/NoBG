@@ -67,3 +67,83 @@ header .menu li i {
 }
 
 /* 主界面 */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.upload {
+    color: var(--text-main);
+    width: 100%;
+    border-radius: 8px;
+}
+
+.upload input[type="file"] {
+    display: none;
+}
+
+.upload .button {
+    display: inline-block;
+    padding: 30px;
+    background-color: var(--bg-button);
+    color: var(--text-button);
+    width: 100%;
+}
+
+.upload .button:hover {
+    background-color: var(--bg-button-focus);
+}
+
+/* 图片预览 */
+.preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.preview .image img {
+    width: 250px;
+    height: auto;
+}
+
+/* 控制按钮 */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.controls .button {
+    padding: 10px 20px;
+    color: var(--text-button);
+}
+
+.controls .button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#removeBtn {
+    background-color: #f44336; /* 红色，表示去除背景 */
+}
+#downloadBtn {
+    background-color: #4caf50; /* 绿色，表示下载 */
+}
+#resetBtn {
+    background-color: #ff9800; /* 主色调橙色，表示重置 */
+}
+
+
+/* 底部信息 */
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    width: 100%;
+}
