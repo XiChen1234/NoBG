@@ -1,7 +1,10 @@
 /* 顶部导航栏 */
 .container {
     max-width: 80%;
-    margin: 90px auto;
+    margin-top: 90px;
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
     padding: 20px;
     background-color: var(--page-bg);
     color: var(--text-main);
@@ -138,8 +141,8 @@ main {
 
 /* 底部信息 */
 footer {
-    margin-top: 50px;
     padding: 20px;
+    margin: 20px;
     text-align: center;
     color: var(--text-secondary);
     border-top: 1px solid var(--border);
