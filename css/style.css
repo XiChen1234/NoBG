@@ -51,19 +51,17 @@ header .logo p {
     margin: 10px;
 }
 
-header .menu li {
-    padding: 10px;
-    border-radius: 8px;
+header .menu i {
+  color: var(--text-main);
+  font-size: 23px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-header .menu li:hover {
-    color: var(--text-main-focus);
-    background-color: var(--bg-focus);
-}
-
-header .menu li i {
-    font-size: 24px;
-    cursor: pointer;
+header .menu i:hover {
+  color: var(--text-main-focus);
+  background-color: var(--bg-focus);
 }
 
 /* 主界面 */
