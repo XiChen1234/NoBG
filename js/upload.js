@@ -4,12 +4,12 @@
  */
 document.addEventListener('DOMContentLoaded', function () {
     // 获取DOM元素
-    const imageUpload = document.getElementById('image_upload'); // 文件选择按钮
-    const uploadArea = document.getElementById('upload_area'); // 拖放区域
+    const imageUpload = document.getElementById('image-upload'); // 文件选择按钮
+    const uploadArea = document.getElementById('upload-area'); // 拖放区域
     // 按钮
-    const removeBtn = document.getElementById('removeBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const resetBtn = document.getElementById('resetBtn');
+    const removeBtn = document.getElementById('remove-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    const resetBtn = document.getElementById('reset-btn');
 
 
     /**
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const reader = new FileReader();
         reader.onload = function (e) {
             // 将选择的图片显示在页面上
-            const image = document.getElementById('original_image');
+            const image = document.getElementById('original-image');
             image.src = e.target.result;
             image.style.display = 'block';
 

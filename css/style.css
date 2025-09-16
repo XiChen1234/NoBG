@@ -128,13 +128,13 @@ main {
     cursor: not-allowed;
 }
 
-#removeBtn {
+#remove-btn {
     background-color: #f44336; /* 红色，表示去除背景 */
 }
-#downloadBtn {
+#download-btn {
     background-color: #4caf50; /* 绿色，表示下载 */
 }
-#resetBtn {
+#reset-btn {
     background-color: #ff9800; /* 主色调橙色，表示重置 */
 }
 
