@@ -48,11 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // 拖放功能实现
     uploadArea.addEventListener('dragover', function (e) {
         e.preventDefault();
-        console.log('dragover')
     });
     uploadArea.addEventListener('dragleave', function (e) {
         e.preventDefault();
-        console.log('dragleave')
     });
     // 核心代码
     uploadArea.addEventListener('drop', function (e) {
