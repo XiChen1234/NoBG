@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 获取DOM元素
     const imageUpload = document.getElementById('image-upload'); // 文件选择按钮
     const uploadArea = document.getElementById('upload-area'); // 拖放区域
+    const image = document.getElementById('original-image')
     // 按钮
     const removeBtn = document.getElementById('remove-btn');
     const downloadBtn = document.getElementById('download-btn');
@@ -25,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const reader = new FileReader();
         reader.onload = function (e) {
             // 将选择的图片显示在页面上
-            const image = document.getElementById('original-image');
             image.src = e.target.result;
             image.style.display = 'block';
 
@@ -62,5 +62,22 @@ document.addEventListener('DOMContentLoaded', function () {
             handleFileSelect(e.dataTransfer.files[0]);
         }
     });
+
+    /**
+     * 重置界面功能
+     */
+    resetBtn.addEventListener('click', function () {
+        if (confirm('确定要重置吗？')) {
+            image.src = '';
+            image.style.display = 'none';
+
+            document.getElementById('processed-image').src = ""
+            document.getElementById('processed-image').style.display = 'none';
+
+            removeBtn.disabled = true;
+            downloadBtn.disabled = true;
+            resetBtn.disabled = true;
+        }
+    })
 
 })
