@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // 获取DOM元素
     const imageUpload = document.getElementById('image-upload'); // 文件选择按钮
     const uploadArea = document.getElementById('upload-area'); // 拖放区域
-    const image = document.getElementById('original-image')
+    // 图片
+    const originalImage = document.getElementById('original-image')
+    const processedImage = document.getElementById('processed-image')
     // 按钮
     const removeBtn = document.getElementById('remove-btn');
     const downloadBtn = document.getElementById('download-btn');
@@ -26,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const reader = new FileReader();
         reader.onload = function (e) {
             // 将选择的图片显示在页面上
-            image.src = e.target.result;
-            image.style.display = 'block';
+            originalImage.src = e.target.result;
+            originalImage.style.display = 'block';
 
             // 启用按钮
             removeBtn.disabled = false;
@@ -68,11 +70,10 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     resetBtn.addEventListener('click', function () {
         if (confirm('确定要重置吗？')) {
-            image.src = '';
-            image.style.display = 'none';
-
-            document.getElementById('processed-image').src = ""
-            document.getElementById('processed-image').style.display = 'none';
+            originalImage.src = '';
+            originalImage.style.display = 'none';
+            processedImage.src = ""
+            processedImage.style.display = 'none';
 
             removeBtn.disabled = true;
             downloadBtn.disabled = true;
@@ -80,4 +81,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })
 
+    /**
+     * 下载图片功能
+     */
+    downloadBtn.addEventListener('click', function () {
+        if(!processedImage.src) {
+            alert('没有可下载的处理后图片');
+            return;
+        }
+
+        const link = document.createElement('a');
+        link.style.display = 'none';
+        link.href = processedImage.src;
+        link.download = `背景已去除_${new Date().getTime()}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    })
 })
