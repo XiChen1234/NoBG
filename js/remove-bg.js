@@ -18,14 +18,20 @@ document.addEventListener('DOMContentLoaded', function () {
      * @returns {Promise} 模型加载完成后的Promise
      */
     async function loadModel() {
+        console.log("loadModel")
         try {
             removeBtn.disabled = true;
             removeBtn.textContent = '加载中...';
 
-            net = await bodyPix.load();
+            net = await bodyPix.load({
+                architecture: 'MobileNetV1',
+                outputStride: 16,
+                multiplier: 1.0,  // 提高模型质量
+                quantBytes: 4     // 使用更多位量化以提高质量
+            });
 
             return net;
-        } catch {
+        } catch (error) {
             console.log('加载模型失败：', error);
             alert('加载模型失败，请刷新页面重试');
             throw error;
@@ -68,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * 图片处理流程
      */
     async function processImage() {
+        console.log("press")
         if (!originalImage.src) {
             alert('请先上传图片');
             return;
@@ -89,9 +96,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const segmentation = await net.segmentPerson(canvas, {
                 flipHorizontal: false,
-                internalResolution: 'high',  // 提高内部分辨率以获得更精细的结果
-                segmentationThreshold: 0.7,  // 设置分割阈值
-                scoreThreshold: 0.6,         // 设置人物检测阈值
+                internalResolution: 0.4,  // 提高内部分辨率以获得更精细的结果
+                segmentationThreshold: 0.8,  // 设置分割阈值
+                scoreThreshold: 0.8,         // 设置人物检测阈值
             })
 
             const maskCanvas = document.createElement('canvas');
@@ -127,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
             processedImage.src = resultCanvas.toDataURL('image/png');
             processedImage.style.display = 'block';
             downloadBtn.disabled = false;
-        } catch {
+        } catch (error) {
             console.log('处理图片失败：', error);
             alert('处理图片失败，请刷新页面重试');
         } finally {
