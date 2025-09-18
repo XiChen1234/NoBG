@@ -106,6 +106,22 @@ main {
     width: 100%;
 }
 
+.preview .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    min-height: 200px;
+    border: 3px dashed var(--border-color-focus);
+}
+
+.preview .image img {
+    width: 100%;
+    height: auto;
+}
+
 .preview .image img {
     width: 250px;
     height: auto;
