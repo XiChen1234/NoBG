@@ -69,10 +69,12 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     resetBtn.addEventListener('click', function () {
         if (confirm('确定要重置吗？')) {
-            originalImage.src = '';
+            originalImage.src = "";
             originalImage.style.display = 'none';
             processedImage.src = ""
             processedImage.style.display = 'none';
+
+            imageUpload.value = "";
 
             removeBtn.disabled = true;
             downloadBtn.disabled = true;
