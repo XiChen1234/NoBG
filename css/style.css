@@ -51,7 +51,7 @@ header .logo h1 {
 header .logo p {
     font-size: 16px;
     color: var(--text-secondary);
-    margin: 10px;
+    margin-left: 10px;
 }
 
 header .menu i {
@@ -131,6 +131,8 @@ main {
 .controls {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
     gap: 20px;
 }
 
