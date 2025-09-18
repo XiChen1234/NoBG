@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // 启用按钮
             removeBtn.disabled = false;
-            downloadBtn.disabled = false;
             resetBtn.disabled = false;
         }
 

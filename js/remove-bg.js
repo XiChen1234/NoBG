@@ -6,6 +6,7 @@
 // 等待DOM加载完成
 document.addEventListener('DOMContentLoaded', function () {
     const removeBtn = document.getElementById('remove-btn');
+    const downloadBtn = document.getElementById('download-btn');
 
     const originalImage = document.getElementById('original-image');
     const processedImage = document.getElementById('processed-image');
@@ -125,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             processedImage.src = resultCanvas.toDataURL('image/png');
             processedImage.style.display = 'block';
+            downloadBtn.disabled = false;
         } catch {
             console.log('处理图片失败：', error);
             alert('处理图片失败，请刷新页面重试');
