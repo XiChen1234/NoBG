@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
     async function loadModel() {
         console.log("loadModel")
         try {
-            removeBtn.disabled = true;
-            removeBtn.textContent = '加载中...';
 
             net = await bodyPix.load({
                 architecture: 'MobileNetV1',
@@ -35,9 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('加载模型失败：', error);
             alert('加载模型失败，请刷新页面重试');
             throw error;
-        } finally {
-            removeBtn.disabled = false;
-            removeBtn.textContent = '去除背景';
         }
     }
 
@@ -73,7 +68,9 @@ document.addEventListener('DOMContentLoaded', function () {
      * 图片处理流程
      */
     async function processImage() {
-        console.log("press")
+        removeBtn.disabled = true;
+        removeBtn.textContent = '加载中...';
+
         if (!originalImage.src) {
             alert('请先上传图片');
             return;
