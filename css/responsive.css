@@ -45,6 +45,12 @@
     }
 }
 
+@media (hover: none) {
+    .button:hover {
+        transform: none;
+    }
+}
+
 /* 平板 */
 /* @media screen and (min-width: 769px) and (max-width: 1024px) {
 
