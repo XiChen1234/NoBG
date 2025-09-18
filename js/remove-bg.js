@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function applyGaussianBlur(canvas, strength) {
         const ctx = canvas.getContext('2d');
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const data = imageData.data;
 
         // 创建临时画布用于模糊处理
         const tempCanvas = document.createElement('canvas');
