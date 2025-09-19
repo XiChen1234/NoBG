@@ -156,6 +156,35 @@ main {
     background-color: #ff9800; /* 主色调橙色，表示重置 */
 }
 
+/* 进度条样式 */
+.progress-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: var(--common-bg);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--bg-button);
+    transition: width 0.3s ease;
+    border-radius: 6px;
+}
+
+#progress-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: center;
+}
 
 /* 底部信息 */
 footer {

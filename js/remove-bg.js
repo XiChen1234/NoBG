@@ -10,8 +10,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const originalImage = document.getElementById('original-image');
     const processedImage = document.getElementById('processed-image');
+    
+    // 进度条相关元素
+    const progressContainer = document.getElementById('progress-container');
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
 
     let net = null;
+
+    /**
+     * 更新进度条
+     * @param {number} percentage - 进度百分比 (0-100)
+     * @param {string} text - 进度文本
+     */
+    function updateProgress(percentage, text) {
+        progressFill.style.width = `${percentage}%`;
+        progressText.textContent = text;
+    }
 
     /**
      * 加载BodyPix模型
@@ -70,18 +85,26 @@ document.addEventListener('DOMContentLoaded', function () {
     async function processImage() {
         removeBtn.disabled = true;
         removeBtn.textContent = '加载中...';
+        progressContainer.style.display = 'block';
+        updateProgress(0, '准备处理...');
 
         if (!originalImage.src) {
             alert('请先上传图片');
+            progressContainer.style.display = 'none';
             return;
         }
 
         try {
+            // 步骤1: 检查并加载模型 (20%)
             if (!net) {
+                updateProgress(10, '加载模型中...');
                 net = await loadModel();
+                updateProgress(20, '模型加载完成');
+            } else {
+                updateProgress(20, '准备图像...');
             }
 
-            // 创建画布用于处理
+            // 步骤2: 创建并准备画布 (30%)
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
 
@@ -89,14 +112,20 @@ document.addEventListener('DOMContentLoaded', function () {
             canvas.height = originalImage.naturalHeight;
 
             ctx.drawImage(originalImage, 0, 0);
+            updateProgress(30, '图像准备完成');
 
+            // 步骤3: 进行人体分割 (60%)
+            updateProgress(40, '正在进行人物识别...');
             const segmentation = await net.segmentPerson(canvas, {
                 flipHorizontal: false,
                 internalResolution: 0.4,  // 提高内部分辨率以获得更精细的结果
                 segmentationThreshold: 0.8,  // 设置分割阈值
                 scoreThreshold: 0.8,         // 设置人物检测阈值
             })
+            updateProgress(60, '人物识别完成');
 
+            // 步骤4: 创建掩码并应用高斯模糊 (80%)
+            updateProgress(70, '创建背景掩码...');
             const maskCanvas = document.createElement('canvas');
             const maskCtx = maskCanvas.getContext('2d');
 
@@ -110,7 +139,10 @@ document.addEventListener('DOMContentLoaded', function () {
             maskCtx.putImageData(foregroundImageData, 0, 0);
 
             applyGaussianBlur(maskCanvas, 3); // 应用高斯模糊
+            updateProgress(80, '背景掩码处理完成');
 
+            // 步骤5: 创建结果图像并应用掩码 (95%)
+            updateProgress(85, '正在合成结果图像...');
             const resultCanvas = document.createElement('canvas');
             resultCanvas.width = canvas.width; // 和原图尺寸一致
             resultCanvas.height = canvas.height;
@@ -127,13 +159,20 @@ document.addEventListener('DOMContentLoaded', function () {
             // 恢复默认合成模式（避免影响后续绘图）
             resultCtx.globalCompositeOperation = 'source-over';
 
+            updateProgress(95, '处理完成，正在生成最终图像...');
             processedImage.src = resultCanvas.toDataURL('image/png');
             processedImage.style.display = 'block';
             downloadBtn.disabled = false;
         } catch (error) {
             console.log('处理图片失败：', error);
             alert('处理图片失败，请刷新页面重试');
+            progressContainer.style.display = 'none';
         } finally {
+            updateProgress(100, '处理完成！');
+            // 短暂显示100%完成状态，然后隐藏进度条
+            setTimeout(() => {
+                progressContainer.style.display = 'none';
+            }, 3000);
             removeBtn.textContent = '去除背景';
             removeBtn.disabled = false;
         }

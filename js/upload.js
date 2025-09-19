@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const downloadBtn = document.getElementById('download-btn');
     const resetBtn = document.getElementById('reset-btn');
 
+    // 进度条
+    const progressContainer = document.getElementById('progress-container');
+
 
     /**
      * 处理文件选择
@@ -75,6 +78,11 @@ document.addEventListener('DOMContentLoaded', function () {
             processedImage.style.display = 'none';
 
             imageUpload.value = "";
+
+            // 隐藏进度条
+            if (progressContainer) {
+                progressContainer.style.display = 'none';
+            }
 
             removeBtn.disabled = true;
             downloadBtn.disabled = true;
