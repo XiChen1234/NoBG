@@ -1,0 +1,23 @@
+{
+  "id": "5025556",
+  "name": "NoBg",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "一个简单、快速、隐私保护的在线图片背景去除工具，完全在浏览器中本地处理，无需上传任何图片到服务器。",
+  "glyphs": [
+    {
+      "icon_id": "8474311",
+      "name": "moon",
+      "font_class": "moon",
+      "unicode": "e6c3",
+      "unicode_decimal": 59075
+    },
+    {
+      "icon_id": "8474377",
+      "name": "sun",
+      "font_class": "sun",
+      "unicode": "e6da",
+      "unicode_decimal": 59098
+    }
+  ]
+}
